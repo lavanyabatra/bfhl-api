@@ -8,13 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/bfhl")
 public class BfhlController {
 
     @Autowired
     private BfhlService bfhlService;
 
-    @PostMapping
+    @PostMapping("/bfhl")
     public ResponseEntity<ResponseDTO> processData(
             @RequestBody RequestDTO request) {
 
@@ -22,5 +21,10 @@ public class BfhlController {
                 bfhlService.processData(request);
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
     }
 }
